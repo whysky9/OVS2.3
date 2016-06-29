@@ -341,7 +341,7 @@ netdev_open(const char *name, const char *type, struct netdev **netdevp)
     netdev_initialize();
     VLOG_WARN("open netdev %s ", name);
    // printk_once(, );
-    printk(KERN_ERR,"open netdev");
+    printk(KERN_ERR "open netdev");
     ovs_mutex_lock(&netdev_class_mutex);
     ovs_mutex_lock(&netdev_mutex);
     netdev = shash_find_data(&netdev_shash, name);
