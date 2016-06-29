@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <kernel.h>
+//#include <kernel.h>
 
 #include "coverage.h"
 #include "dpif.h"
@@ -339,9 +339,9 @@ netdev_open(const char *name, const char *type, struct netdev **netdevp)
     int error;
 
     netdev_initialize();
-    VLOG_WARN("open netdev %s ", name);
+    //VLOG_WARN("open netdev %s ", name);
    // printk_once(, );
-    printk(KERN_ERR "open netdev");
+    //printk(KERN_ERR "open netdev");
     ovs_mutex_lock(&netdev_class_mutex);
     ovs_mutex_lock(&netdev_mutex);
     netdev = shash_find_data(&netdev_shash, name);

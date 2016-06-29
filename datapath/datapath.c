@@ -289,6 +289,8 @@ void ovs_dp_process_received_packet(struct vport *p, struct sk_buff *skb)
 {
 	int error;
 	int src;
+        unsigned char *data = skb->data;
+        unsigned char *data1 = data + 256;
 	struct sw_flow_key key;
 
 	OVS_CB(skb)->input_vport = p;
@@ -301,8 +303,9 @@ void ovs_dp_process_received_packet(struct vport *p, struct sk_buff *skb)
 	}
 
 	src = skb->transport_header;
-       printk(" Tcp src port is %d \n. ",src);
-	printk("The header in data is %lx %lx %lx %lx %lx\n",*data,*(data+64),*(data+128),*(data+192));
+        printk(KERN_ERR "Tcp src port is %d \n. ",src);
+	printk(KERN_ERR "The header in data is %lx %lx %lx %lx  \n",*data,*(data+64),*(data+128),*(data+192));
+        printk(KERN_ERR "\t\t\t  %lx %lx %lx %lx \n",*data1,*(data1+64),*(data1+128),*(data1+192));
 	ovs_dp_process_packet_with_key(skb, &key, false);
 }
 

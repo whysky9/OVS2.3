@@ -1,0 +1,1 @@
+cmd_/home/hcy/Downloads/OVS2.3/datapath/linux/openvswitch.ko := ld -r -m elf_x86_64 -T /usr/src/kernels/linux-3.2/scripts/module-common.lds --build-id  -o /home/hcy/Downloads/OVS2.3/datapath/linux/openvswitch.ko /home/hcy/Downloads/OVS2.3/datapath/linux/openvswitch.o /home/hcy/Downloads/OVS2.3/datapath/linux/openvswitch.mod.o
