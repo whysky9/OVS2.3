@@ -301,11 +301,17 @@ void ovs_dp_process_received_packet(struct vport *p, struct sk_buff *skb)
 		kfree_skb(skb);
 		return;
 	}
-
-	src = skb->transport_header;
-        printk(KERN_ERR "Tcp src port is %d \n. ",src);
-	printk(KERN_ERR "The header in data is %lx %lx %lx %lx  \n",*data,*(data+64),*(data+128),*(data+192));
-        printk(KERN_ERR "\t\t\t  %lx %lx %lx %lx \n",*data1,*(data1+64),*(data1+128),*(data1+192));
+   
+        const struct tcphdr *th = tcp_hdr(skb);
+        printk(KERN_ERR "tcp source port is 0x%4x,dest port is 0x%4x.\n",th->source,th->dest);
+        //printk(KERN_ERR "Len is %d, data_len is %d\n",skb->len,skb->data_len);
+        //printk(KERN_ERR "Mac len is 0x%4x,hdr_len is 0x%4x.\n",skb->mac_len,skb->hdr_len);
+        //printk(KERN_ERR "Priority is 0x%x,pkt_type is 0x%02x.\n",skb->priority,skb->pkt_type);
+        //printk(KERN_ERR "PROTOCOL is 0x%04x.\n",skb->protocol);
+        //printk(KERN_ERR "sk_buff_data_t %d",sizeof(sk_buff_data_t));
+        //printk(KERN_ERR "transport_header is %d \n. ",skb->transport_header);
+	//printk(KERN_ERR "The header in data is %lx %lx %lx %lx  \n",*data,*(data+64),*(data+128),*(data+192));
+        //printk(KERN_ERR "\t\t\t  %lx %lx %lx %lx \n",*data1,*(data1+64),*(data1+128),*(data1+192));
 	ovs_dp_process_packet_with_key(skb, &key, false);
 }
 
